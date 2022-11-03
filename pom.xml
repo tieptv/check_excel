@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>excel_service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>excel_service</name>
     <description>excel_service</description>
     <properties>
