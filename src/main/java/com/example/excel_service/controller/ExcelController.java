@@ -23,8 +23,32 @@ public class ExcelController {
     @PostMapping("/check")
     public ResponseEntity<Resource> getFile(@RequestParam("file") List<MultipartFile> files
     ) throws IOException {
-        String filename = "new_code.xlsx";
+        String filename = "hang.xlsx";
         InputStreamResource file = new InputStreamResource(excelService.load(files));
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+    }
+
+    @PostMapping("/hang")
+    public ResponseEntity<Resource> getFileProduct(@RequestParam("file") List<MultipartFile> files
+    ) throws IOException {
+        String filename = "hang.xlsx";
+        InputStreamResource file = new InputStreamResource(excelService.getFileProduct(files));
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+                .contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+                .body(file);
+    }
+
+    @PostMapping("/layhang")
+    public ResponseEntity<Resource> getHang(@RequestParam("file") MultipartFile files
+    ) throws IOException {
+        String filename = "hang.xlsx";
+        InputStreamResource file = new InputStreamResource(excelService.getFilePro(files));
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
