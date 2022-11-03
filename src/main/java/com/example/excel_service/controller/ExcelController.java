@@ -20,8 +20,9 @@ public class ExcelController {
     @Autowired
     ExcelService excelService;
 
-    @PostMapping("/check")
-    public ResponseEntity<Resource> getFile(@RequestParam("file") List<MultipartFile> files
+    @PostMapping(value = "/get_new_code",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Resource> getFile(@RequestPart("file") List<MultipartFile> files
     ) throws IOException {
         String filename = "hang.xlsx";
         InputStreamResource file = new InputStreamResource(excelService.load(files));
@@ -32,8 +33,8 @@ public class ExcelController {
                 .body(file);
     }
 
-    @PostMapping("/hang")
-    public ResponseEntity<Resource> getFileProduct(@RequestParam("file") List<MultipartFile> files
+    @PostMapping(value = "/hang",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Resource> getFileProduct(@RequestPart("file") List<MultipartFile> files
     ) throws IOException {
         String filename = "hang.xlsx";
         InputStreamResource file = new InputStreamResource(excelService.getFileProduct(files));
@@ -44,8 +45,8 @@ public class ExcelController {
                 .body(file);
     }
 
-    @PostMapping("/layhang")
-    public ResponseEntity<Resource> getHang(@RequestParam("file") MultipartFile files
+    @PostMapping(value = "/get_code_name",consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<Resource> getHang(@RequestPart("file") MultipartFile files
     ) throws IOException {
         String filename = "hang.xlsx";
         InputStreamResource file = new InputStreamResource(excelService.getFilePro(files));
