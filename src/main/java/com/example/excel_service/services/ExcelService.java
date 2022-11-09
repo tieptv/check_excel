@@ -19,9 +19,12 @@ import static org.apache.poi.ss.usermodel.CellType.STRING;
 public class ExcelService {
 
     public ByteArrayInputStream load(List<MultipartFile> files) {
-        List<String> file1Codes = getListCode(files.get(0), "Sheet1");
-        List<String> file2Codes = getListCode(files.get(1), "Sheet1");
-        List<String> newCodes = file2Codes.stream().filter(item -> !file1Codes.contains(item)).collect(Collectors.toList());
+        List<Code> file1Codes = getListCode(files.get(0), "Sheet1");
+        List<Code> file2Codes = getListCode(files.get(1), "Sheet1");
+        List<String> file1CodeList = file1Codes.stream().map(item -> item.getCode()).collect(Collectors.toList());
+
+        List<Code> newCodes = file2Codes.stream().filter(item -> !file1CodeList.contains(item.getCode()))
+                .collect(Collectors.toList());
         return ExcelHelper.codesToExcel(newCodes);
     }
 
@@ -43,8 +46,8 @@ public class ExcelService {
         return ExcelHelper.codeModelsToExcel(file1Codes);
     }
 
-    List<String> getListCode(MultipartFile file, String sheetName) {
-        List<String> result = new ArrayList<>();
+    List<Code> getListCode(MultipartFile file, String sheetName) {
+        List<Code> result = new ArrayList<>();
 
         Workbook workbook = null;
         try {
@@ -74,7 +77,7 @@ public class ExcelService {
                         case 1:
                             String code = currentCell.getStringCellValue();
                             if (code != null && !code.trim().isEmpty()) {
-                                result.add(currentCell.getStringCellValue());
+                                result.add(new Code(currentCell.getStringCellValue(), String.valueOf(rowNumber)));
                             }
                             break;
 
@@ -83,6 +86,7 @@ public class ExcelService {
                     }
                     cellIdx++;
                 }
+                rowNumber++;
             }
 
         } catch (IOException e) {
