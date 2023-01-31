@@ -75,9 +75,9 @@ public class ExcelService {
 
                     switch (cellIdx) {
                         case 1:
-                            String code = currentCell.getStringCellValue();
+                            String code = currentCell.getStringCellValue().trim();
                             if (code != null && !code.trim().isEmpty()) {
-                                result.add(new Code(currentCell.getStringCellValue(), String.valueOf(rowNumber)));
+                                result.add(new Code(code, String.valueOf(rowNumber)));
                             }
                             break;
 
