@@ -8,7 +8,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'https://github.com/tieptv/check_excel.git',
-            credentialsId: 'spring-deploy',
+            credentialsId: 'tieptv',
             branch: 'main'
      }
       stage('Build docker') {
