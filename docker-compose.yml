@@ -5,7 +5,7 @@ services:
     container_name: springboot-deploy
     ports:
       - "8081:8081"
-    restart: always
+    restart: on-failure
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,12 +17,14 @@ services:
   mysqldb:
     image: mysql:8
     container_name: mysqldb
-    restart: always
+    restart: on-failure
     networks:
       - employee-mysql
     environment:
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=bootdb
+    ports:
+      - 3306:3306
 
 networks:
   employee-mysql:
