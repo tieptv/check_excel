@@ -8,7 +8,7 @@ try{
         // for display purposes
         // Get some code from a GitHub repository
         git url: 'https://github.com/tieptv/check_excel.git',
-            credentialsId: 'tieptv',
+            credentialsId: 'spring-deploy',
             branch: 'main'
      }
       stage('Build docker') {
@@ -18,7 +18,7 @@ try{
       stage('Deploy docker'){
               echo "Docker Image Tag Name: ${dockerImageTag}"
               sh "docker stop springboot-deploy || true && docker rm springboot-deploy || true"
-              sh "docker run --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
+              sh "docker run --network employee-mysql --name springboot-deploy -d -p 8081:8081 springboot-deploy:${env.BUILD_NUMBER}"
       }
 }catch(e){
     currentBuild.result = "FAILED"
