@@ -1,10 +1,14 @@
 version: '3'
 
 services:
-  springboot-deploy:
-    image: springboot-deploy
+  app:
+    container_name: springboot-deploy
     ports:
       - "8081:8081"
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - employee-mysql
     depends_on:
@@ -17,7 +21,6 @@ services:
     environment:
       - MYSQL_PASSWORD=root
       - MYSQL_DATABASE=tieptv
-      - MYSQL_USERNAME=root
 
 networks:
   employee-mysql:
