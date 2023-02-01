@@ -16,11 +16,13 @@ services:
 
   mysqldb:
     image: mysql:8
+    container_name: mysqldb
+    restart: always
     networks:
       - employee-mysql
     environment:
       - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=tieptv
+      - MYSQL_DATABASE=bootdb
 
 networks:
   employee-mysql:
