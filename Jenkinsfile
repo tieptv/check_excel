@@ -7,7 +7,7 @@ try{
      stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        git url: 'https://github.com/tieptv/check_excel',
+        git url: 'https://gitlab.com/tieptv/check_excel.git',
             credentialsId: 'spring-deploy',
             branch: 'main'
      }
