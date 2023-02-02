@@ -7,9 +7,8 @@ WORKDIR /opt/app
 
 COPY ./ /opt/app
 COPY pom.xml ./pom.xml
-RUN ls -l
 RUN mvn clean install -DskipTests
-
+ENTRYPOINT ["ls -l"]
 
 # Run spring boot in Docker
 FROM openjdk:8-jdk-alpine
