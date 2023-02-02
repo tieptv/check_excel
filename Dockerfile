@@ -6,6 +6,7 @@ FROM maven:3-jdk-8-alpine AS build
 WORKDIR /opt/app
 
 COPY ./ /opt/app
+COPY pom.xml ./pom.xml
 RUN mvn clean install -DskipTests
 
 
