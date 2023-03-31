@@ -13,8 +13,8 @@ try{
      }
 
 
-     dir("C:\\Users\\vmo") {
-            fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '.ssh/*', targetLocation: "${WORKSPACE}")])
+     stage('Copy') {
+            bat  "copy /Y C:\\Users\\vmo\\.ssh\\* ${Workspace}\\"
      }
 
       stage('Build docker') {
