@@ -11,6 +11,12 @@ try{
             credentialsId: 'spring-deploy',
             branch: 'main'
      }
+
+     stage('Copy) {
+        dir("C:\\Users\\vmo") {
+            fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '.ssh/*', targetLocation: "${WORKSPACE}")])
+        }
+     }
       stage('Build docker') {
              dockerImage = docker.build("springboot-deploy:${env.BUILD_NUMBER}")
       }
