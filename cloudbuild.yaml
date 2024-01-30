@@ -18,7 +18,7 @@ steps:
       - '--platform'
       - 'managed'
       - '--region'
-      - 'us-central1'
+      - 'asia-east1'
       - '--allow-unauthenticated'
 
 options:
