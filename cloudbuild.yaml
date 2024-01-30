@@ -21,5 +21,12 @@ steps:
       - 'us-central1'
       - '--allow-unauthenticated'
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+  substitution_option: MUST_MATCH
+
+substitutions:
+  _LOGS_BUCKET: check_exel_log
+
 images:
   - 'gcr.io/aqueous-vial-409502/check-excel'
