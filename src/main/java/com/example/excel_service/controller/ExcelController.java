@@ -83,4 +83,10 @@ public class ExcelController {
     ) throws IOException {
         return "hello";
     }
+
+    @GetMapping("/hello")
+    public String hello1(
+    ) throws IOException {
+        return "hello";
+    }
 }
