@@ -14,8 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    public static final String ADMIN = "admin";
-    public static final String USER = "user";
+    public static final String ADMIN = "test_client_admin";
+    public static final String USER = "test_client_user";
     private final JwtConverter jwtConverter;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
