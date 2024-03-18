@@ -1,0 +1,15 @@
+{
+  "realm": "myrealm",
+  "auth-server-url": "http://localhost:8100",
+  "resource": "myclient",
+  "credentials": {
+    "secret": "YCWsOA7w34EtKV9vTrfleVTaMgebjVv3"
+  },
+  "http-method-as-scope": true,
+  "paths": [
+    {
+      "path": "/api/user",
+      "enforcement-mode": "ENFORCING"
+    }
+  ]
+}
